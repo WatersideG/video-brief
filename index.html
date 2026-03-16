@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>The People Behind the Work — Longfellow Design Build</title>
+<style>
+  :root {
+    --navy: #0f1c2e;
+    --navy-mid: #1a2d45;
+    --gold: #b8902a;
+    --gold-pale: #f5edd8;
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --ink: #1a1a1a;
+    --ink-mid: #3a3a3a;
+    --ink-lt: #5a5a5a;
+    --ink-pale: #9a9a9a;
+    --rule: #e2ddd4;
+    --green-pale: #e8f4ee;
+    --green: #2a6a4a;
+    --amber-pale: #fef3e2;
+    --amber: #7a4010;
+    --blue-pale: #e8f0fa;
+    --blue: #1a4a7a;
+    --red: #8a2020;
+    --red-pale: #fdf0f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: var(--cream);
+    color: var(--ink-mid);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: 28px 20px 24px;
+    border-bottom: 3px solid var(--gold);
+  }
+  .header-eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .header-title { font-family: Georgia, 'Times New Roman', serif; font-size: 26px; font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 8px; }
+  .header-sub { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+  .spec-strip { background: var(--navy-mid); padding: 12px 20px; display: flex; gap: 7px; flex-wrap: wrap; }
+  .spec-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 4px 11px; font-size: 11px; color: rgba(255,255,255,0.6); }
+  .spec-pill strong { color: var(--white); font-weight: 500; }
+
+  /* ── TABS ── */
+  .tab-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 6px 12px;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color: var(--ink-pale);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── TAB PANELS ── */
+  .tab-panel { display: none; padding-bottom: 60px; }
+  .tab-panel.active { display: block; }
+
+  /* ── SECTION PRIMITIVES ── */
+  .panel-section { padding: 24px 20px; }
+  .panel-section + .panel-section { border-top: 1px solid var(--rule); }
+  .section-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 12px; }
+  .body-text { font-size: 14px; color: var(--ink-lt); line-height: 1.75; }
+  .body-text + .body-text { margin-top: 10px; }
+
+  /* ── CONCEPT TAB ── */
+  .concept-block {
+    background: var(--white);
+    border-left: 3px solid var(--ink);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 18px;
+  }
+
+  .series-standard { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .standard-row { display: grid; grid-template-columns: 90px 1fr; border-bottom: 1px solid var(--rule); }
+  .standard-row:last-child { border-bottom: none; }
+  .std-key { padding: 12px 14px; font-size: 11px; font-weight: 500; color: var(--ink-pale); background: var(--cream); letter-spacing: 0.3px; display: flex; align-items: flex-start; padding-top: 14px; }
+  .std-val { padding: 12px 14px; font-size: 13px; color: var(--ink-lt); line-height: 1.6; }
+
+  .callout-block { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .tl-wrap { padding: 16px; }
+  .tl-track { height: 6px; background: var(--rule); border-radius: 3px; position: relative; }
+  .tl-window { position: absolute; top: 0; height: 100%; background: var(--blue); border-radius: 3px; left: 26.7%; width: 13.3%; opacity: 0.75; }
+  .tl-labels { display: flex; justify-content: space-between; margin-top: 5px; }
+  .tl-lbl { font-size: 10.5px; color: var(--ink-pale); }
+  .tl-lbl.on { color: var(--blue); font-weight: 500; }
+  .tl-note { font-size: 12.5px; color: var(--ink-lt); margin-top: 10px; line-height: 1.6; }
+  .callout-rows { border-top: 1px solid var(--rule); }
+  .callout-row { display: flex; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--rule); }
+  .callout-row:last-child { border-bottom: none; }
+  .cr-lbl { font-size: 11px; font-weight: 500; color: var(--ink-pale); min-width: 62px; padding-top: 2px; flex-shrink: 0; }
+  .cr-val { font-size: 13px; color: var(--ink-lt); line-height: 1.55; }
+
+  /* ── EPISODES TAB ── */
+  .episode-selector { display: flex; gap: 8px; padding: 20px 20px 0; }
+  .ep-btn {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ink-pale);
+    transition: all 0.15s;
+  }
+  .ep-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+  .ep-num { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .ep-name { font-size: 12px; display: block; }
+
+  .episode-panel { display: none; }
+  .episode-panel.active { display: block; }
+
+  .ep-header { background: var(--navy); padding: 18px 20px; margin-top: 16px; border-top: 2px solid var(--gold); }
+  .ep-eyebrow { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .ep-title { font-family: Georgia, serif; font-size: 22px; font-weight: 400; color: var(--white); margin-bottom: 4px; }
+  .ep-talent { font-size: 12.5px; color: rgba(255,255,255,0.5); }
+
+  .ep-body { padding: 20px; }
+
+  .concept-text { font-size: 13.5px; color: var(--ink-lt); line-height: 1.75; margin-bottom: 14px; }
+  .tone-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tone-chip { font-size: 11px; padding: 4px 10px; border-radius: 4px; background: var(--cream); border: 1px solid var(--rule); color: var(--ink-lt); }
+
+  .ci-box { background: var(--blue-pale); border-radius: 7px; padding: 11px 14px; margin-bottom: 16px; display: flex; gap: 10px; }
+  .ci-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); min-width: 50px; padding-top: 1px; flex-shrink: 0; }
+  .ci-text { font-size: 12.5px; color: var(--ink-lt); line-height: 1.55; }
+  .ci-text strong { color: var(--ink); font-weight: 500; }
+
+  .vo-box { background: var(--cream); border-radius: 8px; padding: 14px 16px; border: 1px solid var(--rule); margin-bottom: 20px; }
+  .vo-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+  .vo-line { display: flex; gap: 10px; margin-bottom: 8px; }
+  .vo-line:last-of-type { margin-bottom: 0; }
+  .vo-speaker { font-size: 10px; font-weight: 500; text-transform: uppercase; color: var(--ink-pale); min-width: 44px; padding-top: 3px; flex-shrink: 0; }
+  .vo-text { font-size: 13.5px; font-style: italic; color: var(--ink); line-height: 1.65; }
+  .vo-note { font-size: 12px; color: var(--ink-pale); margin-top: 10px; line-height: 1.55; border-top: 1px solid var(--rule); padding-top: 10px; }
+
+  .shots-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 10px; }
+  .shot-card { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+  .shot-header { padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+  .shot-tc { font-size: 11px; font-weight: 500; color: var(--ink-pale); min-width: 26px; padding-top: 2px; flex-shrink: 0; }
+  .shot-title-wrap { flex: 1; }
+  .shot-title { font-size: 13.5px; color: var(--ink-mid); line-height: 1.4; }
+  .shot-flags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+  .flag { font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 3px; }
+  .flag-key { background: var(--blue-pale); color: var(--blue); }
+  .flag-callout { background: var(--amber-pale); color: var(--amber); }
+  .shot-chevron { color: var(--ink-pale); flex-shrink: 0; transition: transform 0.18s; padding-top: 2px; }
+  .shot-chevron svg { display: block; }
+  .shot-header.open .shot-chevron { transform: rotate(180deg); }
+  .shot-detail { display: none; padding: 4px 14px 14px; background: var(--cream); border-top: 1px solid var(--rule); }
+  .shot-detail.open { display: block; }
+  .shot-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; margin-top: 6px; }
+  .smi-label { font-size: 10px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ink-pale); margin-bottom: 2px; }
+  .smi-val { font-size: 12.5px; color: var(--ink-lt); line-height: 1.5; }
+  .smi-full { grid-column: 1 / -1; }
+
+  /* ── DIRECTION TAB ── */
+  .dir-block { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+  .dir-header { padding: 14px 16px; background: var(--cream); border-bottom: 1px solid var(--rule); }
+  .dir-title { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+  .dir-sub { font-size: 12px; color: var(--ink-pale); margin-top: 2px; font-style: italic; }
+
+  .acc-item { border-bottom: 1px solid var(--rule); }
+  .acc-item:last-child { border-bottom: none; }
+  .acc-btn { width: 100%; background: none; border: none; padding: 13px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: inherit; text-align: left; }
+  .acc-left { flex: 1; }
+  .acc-name { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+  .acc-sub { font-size: 12px; color: var(--ink-pale); margin-top: 2px; }
+  .acc-chevron { flex-shrink: 0; margin-left: 10px; color: var(--ink-pale); transition: transform 0.2s; }
+  .acc-chevron svg { display: block; }
+  .acc-btn.open .acc-chevron { transform: rotate(180deg); }
+  .acc-body { display: none; padding: 4px 16px 14px; }
+  .acc-body.open { display: block; }
+  .acc-body ul { padding-left: 16px; }
+  .acc-body li { font-size: 13px; color: var(--ink-lt); line-height: 1.65; margin-bottom: 7px; }
+  .acc-body li:last-child { margin-bottom: 0; }
+  .acc-body p { font-size: 13px; color: var(--ink-lt); line-height: 1.65; margin-bottom: 8px; }
+  .acc-body p:last-child { margin-bottom: 0; }
+  .acc-body strong { color: var(--ink); font-weight: 500; }
+
+  .avoid-row { padding: 12px 16px; background: var(--red-pale); display: flex; gap: 10px; border-top: 1px solid var(--rule); }
+  .avoid-label { font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--red); min-width: 40px; padding-top: 2px; flex-shrink: 0; }
+  .avoid-text { font-size: 12.5px; color: var(--ink-lt); line-height: 1.55; }
+
+  /* ── PRODUCTION TAB ── */
+  .prod-card { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; margin-bottom: 14px; }
+  .prod-card-header { padding: 12px 16px; background: var(--cream); border-bottom: 1px solid var(--rule); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-pale); }
+  .prod-card ul { padding: 14px 16px 14px 30px; }
+  .prod-card li { font-size: 13px; color: var(--ink-lt); line-height: 1.65; margin-bottom: 6px; }
+  .prod-card li:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ── */
+  .site-footer { background: var(--navy); border-top: 2px solid var(--gold); padding: 20px; text-align: center; }
+  .footer-brand { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 3px; }
+  .footer-text { font-size: 10.5px; color: rgba(255,255,255,0.25); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-eyebrow">Longfellow Design Build · Video Series · 3 Videos</div>
+  <div class="header-title">The People Behind the Work</div>
+  <div class="header-sub">Three 15-second portrait films, one discipline each, one voice, images that prove the point.</div>
+</header>
+<div class="spec-strip">
+  <div class="spec-pill"><strong>Format</strong> Portrait 9:16</div>
+  <div class="spec-pill"><strong>Duration</strong> 15 sec each</div>
+  <div class="spec-pill"><strong>Voice-over</strong> Off-camera</div>
+  <div class="spec-pill"><strong>Callout</strong> Text :04–:06</div>
+  <div class="spec-pill"><strong>Camera</strong> Cinema / wide aperture</div>
+  <div class="spec-pill"><strong>Grade</strong> Warm neutral</div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('concept', this)">Concept</button>
+  <button class="tab-btn" onclick="switchTab('episodes', this)">Episodes</button>
+  <button class="tab-btn" onclick="switchTab('direction', this)">Direction</button>
+  <button class="tab-btn" onclick="switchTab('production', this)">Production</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB: CONCEPT
+══════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-concept">
+
+  <div class="panel-section">
+    <div class="section-label">Series Concept</div>
+    <div class="concept-block">
+      <p class="body-text">Most design-build firms lead with their projects. This series leads with their people — the engineers, project managers, and architects whose judgment is the actual product. No talking heads. No scripted delivery. Each person speaks off-camera while the work appears on screen.</p>
+      <p class="body-text" style="margin-top:12px;">The cinematographic standard matches the work itself: intentional, unhurried, precise. Every frame should look like it was chosen, not captured. The edit rhythm reflects a firm that takes its time because it can.</p>
+    </div>
+  </div>
+
+  <div class="panel-section">
+    <div class="section-label">Series Standards</div>
+    <div class="series-standard">
+      <div class="standard-row">
+        <div class="std-key">Voice-over</div>
+        <div class="std-val">All VO recorded off-camera and laid over B-roll. No talent speaks to lens in any video. Record in a single session per person — multiple takes, select the most natural pass.</div>
+      </div>
+      <div class="standard-row">
+        <div class="std-key">On screen</div>
+        <div class="std-val">When talent appears in B-roll, they should be unaware of the camera. No eye contact with lens. No staged reactions. Candid behavior, not documentary performance.</div>
+      </div>
+      <div class="standard-row">
+        <div class="std-key">Pacing</div>
+        <div class="std-val">4–6 cuts per video. Minimum 2-second hold per shot. Lock VO before editing — cut picture to VO, never the reverse.</div>
+      </div>
+      <div class="standard-row">
+        <div class="std-key">Homepage</div>
+        <div class="std-val">Videos autoplay muted on the homepage. The visual sequence must communicate the discipline without audio. Review each video muted before final sign-off.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-section">
+    <div class="section-label">Name Callout — All Videos</div>
+    <div class="callout-block">
+      <div class="tl-wrap">
+        <div class="section-label" style="margin-bottom:8px;">Timing within 15 seconds</div>
+        <div class="tl-track"><div class="tl-window"></div></div>
+        <div class="tl-labels">
+          <span class="tl-lbl">:00</span>
+          <span class="tl-lbl">:03</span>
+          <span class="tl-lbl on">:04–:06</span>
+          <span class="tl-lbl">:09</span>
+          <span class="tl-lbl">:12</span>
+          <span class="tl-lbl">:15</span>
+        </div>
+        <p class="tl-note">Fades in at :04, holds ~2 seconds, fades out by :06. VO is active but mid-thought — the name lands before the argument completes. End card at :13.</p>
+      </div>
+      <div class="callout-rows">
+        <div class="callout-row"><span class="cr-lbl">Line 1</span><span class="cr-val">Full name — e.g. <em>Graham Green</em> · Longfellow type system, sentence case</span></div>
+        <div class="callout-row"><span class="cr-lbl">Line 2</span><span class="cr-val">Role — e.g. <em>Structural Engineer</em> · lighter weight, same family</span></div>
+        <div class="callout-row"><span class="cr-lbl">Position</span><span class="cr-val">Lower left · 10% from edge, 15% from bottom</span></div>
+        <div class="callout-row"><span class="cr-lbl">Treatment</span><span class="cr-val">White text · no background box · 0.3s fade in, hold, 0.3s fade out</span></div>
+        <div class="callout-row"><span class="cr-lbl">Video 03</span><span class="cr-val">Two sequential callouts: Kelsey at :04, Hailey at her VO cue. Same treatment.</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB: EPISODES
+══════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-episodes">
+
+  <div class="episode-selector">
+    <button class="ep-btn active" onclick="switchEpisode('ep01', this)">
+      <span class="ep-num">01</span>
+      <span class="ep-name">Engineering</span>
+    </button>
+    <button class="ep-btn" onclick="switchEpisode('ep02', this)">
+      <span class="ep-num">02</span>
+      <span class="ep-name">Project Mgmt</span>
+    </button>
+    <button class="ep-btn" onclick="switchEpisode('ep03', this)">
+      <span class="ep-num">03</span>
+      <span class="ep-name">Architecture</span>
+    </button>
+  </div>
+
+  <!-- EPISODE 01 -->
+  <div class="episode-panel active" id="ep01">
+    <div class="ep-header">
+      <div class="ep-eyebrow">Video 01 of 03</div>
+      <div class="ep-title">Engineering</div>
+      <div class="ep-talent">Graham Green, Structural Engineer — off-camera VO</div>
+    </div>
+    <div class="ep-body">
+      <div class="section-label">Concept</div>
+      <p class="concept-text">Graham arriving by bike opens on a quiet, human note — this is not a firm that operates behind glass. The footage that follows makes the structural argument visually: a beam in the air, glass walls on impossible lots, homes where others said no. The VO names what the viewer is already seeing. Let the images arrive before the words do.</p>
+      <div class="tone-row">
+        <span class="tone-chip">Confident</span>
+        <span class="tone-chip">Precise</span>
+        <span class="tone-chip">Technical, not jargon-heavy</span>
+      </div>
+      <div class="ci-box">
+        <span class="ci-badge">Callout</span>
+        <span class="ci-text"><strong>Graham Green</strong> / Structural Engineer · :04, over drawings shot · white, lower left</span>
+      </div>
+      <div class="vo-box">
+        <div class="vo-label">Voice-over — Graham Green · off-camera</div>
+        <div class="vo-line">
+          <span class="vo-text">"When engineering is in the room from the beginning, problems get solved on paper. That's the difference between a home that's actually possible and one that just looks good in a rendering."</span>
+        </div>
+        <div class="vo-note">~6–7 sec spoken. Name callout appears mid-first sentence. Remaining time carries visually. Multiple takes — select most conversational pass.</div>
+      </div>
+      <div class="shots-label">Shot List — tap for direction</div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:00</span>
+          <div class="shot-title-wrap"><div class="shot-title">Graham arriving at 549 Columbus on his bike</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">35mm or 50mm</div></div>
+            <div><div class="smi-label">Aperture</div><div class="smi-val">f/2 — building soft behind</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static or slow push-in as he passes</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Do not stage. Shoot from across the street or seated — he arrives, he doesn't perform arriving.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:03</span>
+          <div class="shot-title-wrap">
+            <div class="shot-title">Structural drawings or calculations on screen</div>
+            <div class="shot-flags"><span class="flag flag-callout">Name on :04</span></div>
+          </div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">85mm or 50mm macro</div></div>
+            <div><div class="smi-label">Aperture</div><div class="smi-val">f/1.8–f/2.5 — one detail razor sharp</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Rack focus from pen to drawing; or static extreme close-up</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Find the most graphic line in the drawing — a diagonal beam, a structural callout. That line is the composition anchor. Name callout appears over this shot.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:05</span>
+          <div class="shot-title-wrap">
+            <div class="shot-title">Steel beam guided into position by crane</div>
+            <div class="shot-flags"><span class="flag flag-key">Key shot</span></div>
+          </div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">200mm+ telephoto</div></div>
+            <div><div class="smi-label">Frame rate</div><div class="smi-val">120fps — slow motion</div></div>
+            <div><div class="smi-label">Aperture</div><div class="smi-val">f/4–f/5.6 — cable and beam legible together</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Frame from below and to the side — sky as background, beam filling the vertical. Ground crew at bottom for scale. Match cut in: the diagonal in the drawing continues as the angle of the crane cable.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:08</span>
+          <div class="shot-title-wrap"><div class="shot-title">Coastal home — full wall of glass, shot from outside</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">24mm or 35mm</div></div>
+            <div><div class="smi-label">Light</div><div class="smi-val">Golden hour only</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Very slow arc left-to-right — lets glass reflection shift</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Expose so interior and exterior are both legible simultaneously. The transparency is the point, not the house.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:10</span>
+          <div class="shot-title-wrap"><div class="shot-title">Home under construction on difficult terrain</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">24mm wide</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static — let the terrain do the work</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Position camera low on the uphill side so the slope reads clearly behind the structure. The difficulty of the lot should be self-evident — no caption needed.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:12</span>
+          <div class="shot-title-wrap"><div class="shot-title">Completed home on piers — wide establishing shot</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">35mm</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static. Hold the full pier elevation.</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Camera sits at flood-zone grade and looks up. The pier height is the point. Closing frame — cut to end card at :13.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EPISODE 02 -->
+  <div class="episode-panel" id="ep02">
+    <div class="ep-header">
+      <div class="ep-eyebrow">Video 02 of 03</div>
+      <div class="ep-title">Project Management</div>
+      <div class="ep-talent">Tom Pittsley or Rob Cabral, Project Manager — off-camera VO</div>
+    </div>
+    <div class="ep-body">
+      <div class="section-label">Concept</div>
+      <p class="concept-text">The standard footage — reviewing plans, walking a site, talking with the homeowner — establishes the job. The shot that defines this video is the small, unrequested act of care. Filling a dog's water bowl. Sweeping the front entry landing. The smaller the gesture, the more it lands. It must feel unperformed — because it is. That single shot is the argument. Everything else sets it up.</p>
+      <div class="tone-row">
+        <span class="tone-chip">Warm</span>
+        <span class="tone-chip">Honest</span>
+        <span class="tone-chip">Care without sentiment</span>
+      </div>
+      <div class="ci-box">
+        <span class="ci-badge">Callout</span>
+        <span class="ci-text"><strong>Tom Pittsley</strong> (or <strong>Rob Cabral</strong>) / Project Manager · :04, over site walk · white, lower left</span>
+      </div>
+      <div class="vo-box">
+        <div class="vo-label">Voice-over — Tom Pittsley or Rob Cabral · off-camera</div>
+        <div class="vo-line">
+          <span class="vo-text">"A project manager's job isn't just to keep things on schedule. It's to care about the outcome the same way the client does — so when something needs attention, it gets attention, every time."</span>
+        </div>
+        <div class="vo-note">~7–8 sec spoken. The final line lands over the gesture shot — that closing image is the visual proof of the VO's claim. Protect that timing in the edit.</div>
+      </div>
+      <div class="shots-label">Shot List — tap for direction</div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:00</span>
+          <div class="shot-title-wrap"><div class="shot-title">Tom or Rob reviewing drawings with Kelsey</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">50mm or 85mm</div></div>
+            <div><div class="smi-label">Light</div><div class="smi-val">Natural window light from one side</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static or very slow push toward the table</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Frame from the side — table and drawings are foreground. The collaboration is the subject, not either individual. Neither looking at camera.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:03</span>
+          <div class="shot-title-wrap">
+            <div class="shot-title">On-site walk with a tradesperson</div>
+            <div class="shot-flags"><span class="flag flag-callout">Name on :04</span></div>
+          </div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">85mm — 20+ feet back</div></div>
+            <div><div class="smi-label">Aperture</div><div class="smi-val">f/2–f/2.8 — both subjects sharp, site soft</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Gimbal follow — match their walking pace exactly</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Must read as unobserved. Shoot at telephoto distance; never approach. The conversation is real — no direction on content.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:07</span>
+          <div class="shot-title-wrap"><div class="shot-title">Talking with the homeowner at the project</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">50mm</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static. Profile or three-quarter view of both.</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Client body language is the read: relaxed posture, engaged expression. Do not direct the homeowner. If they're tense, find a different moment. Trust can't be staged.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:11</span>
+          <div class="shot-title-wrap">
+            <div class="shot-title">The unexpected gesture</div>
+            <div class="shot-flags"><span class="flag flag-key">Key shot</span></div>
+          </div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">35mm or 50mm</div></div>
+            <div><div class="smi-label">Aperture</div><div class="smi-val">f/2 — hands sharp, background falls away</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static or very slight slow push</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Filling a dog's bowl, sweeping the front entry, straightening a drop cloth, picking up a screw. Position the camera and wait. One take of the real thing is worth 20 directed ones. VO closes over this frame.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EPISODE 03 -->
+  <div class="episode-panel" id="ep03">
+    <div class="ep-header">
+      <div class="ep-eyebrow">Video 03 of 03</div>
+      <div class="ep-title">Architecture &amp; Design</div>
+      <div class="ep-talent">Kelsey + Hailey — shared off-camera VO · two name callouts</div>
+    </div>
+    <div class="ep-body">
+      <div class="section-label">Concept</div>
+      <p class="concept-text">The strongest visual assets in the series. Halloran's ceiling, Dusty Miller's wall of glass, the Sacks house at dusk. Let the architecture carry the first two-thirds. The shared VO mirrors the collaborative discipline: Kelsey defines the vision, Hailey closes on the process. The drone shot is the pivot point between both voices and both scales of the work.</p>
+      <div class="tone-row">
+        <span class="tone-chip">Aspirational</span>
+        <span class="tone-chip">Precise</span>
+        <span class="tone-chip">Two voices, one point of view</span>
+      </div>
+      <div class="ci-box">
+        <span class="ci-badge">Callouts</span>
+        <span class="ci-text"><strong>Kelsey [Last]</strong> / Architect · :04 over ceiling pan &nbsp;·&nbsp; <strong>Hailey [Last]</strong> / Designer · at Hailey's VO cue · sequential, same treatment</span>
+      </div>
+      <div class="vo-box">
+        <div class="vo-label">Voice-over — Kelsey + Hailey · off-camera · shared</div>
+        <div class="vo-line">
+          <span class="vo-speaker">Kelsey</span>
+          <span class="vo-text">"The decisions that define a home — ceiling height, light orientation, where a wall begins and ends — those aren't finishing touches. They're the whole thing."</span>
+        </div>
+        <div class="vo-line" style="margin-top:8px;">
+          <span class="vo-speaker">Hailey</span>
+          <span class="vo-text">"And the only way to get them right is to make them together."</span>
+        </div>
+        <div class="vo-note">Record separately in the same session. Edit into one continuous track with a clean half-beat between voices. Kelsey over shots 01–02; Hailey begins on the drone pull-back. Combined ~9–10 sec.</div>
+      </div>
+      <div class="shots-label">Shot List — tap for direction</div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:00</span>
+          <div class="shot-title-wrap">
+            <div class="shot-title">Halloran ceiling — slow pan, detail revealed</div>
+            <div class="shot-flags"><span class="flag flag-callout">Kelsey callout :04</span></div>
+          </div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">24mm or 35mm</div></div>
+            <div><div class="smi-label">Light</div><div class="smi-val">Interior only — raking light creates texture depth</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Slow deliberate pan — 8–10 sec of movement</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Start on a detail — a joint, a beam end — and let the pan reveal the full composition. Don't rush. Kelsey's name appears at :04 mid-pan.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:05</span>
+          <div class="shot-title-wrap"><div class="shot-title">Dusty Miller wall of glass — interior or exterior</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">35mm</div></div>
+            <div><div class="smi-label">Light</div><div class="smi-val">Late afternoon — maximizes glass quality</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static or slow arc — let reflected light shift</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">The glass is the subject, not the view through it. Expose to hold the glass as a material — its reflections, depth, weight. Interior and exterior both legible simultaneously.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:08</span>
+          <div class="shot-title-wrap">
+            <div class="shot-title">Sacks house at dusk — drone, pin up and back</div>
+            <div class="shot-flags"><span class="flag flag-key">Key shot</span><span class="flag flag-callout">Hailey callout</span></div>
+          </div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Equipment</div><div class="smi-val">DJI Mavic 3 Cine or equivalent — 4K</div></div>
+            <div><div class="smi-label">Timing</div><div class="smi-val">Blue hour only — 8–12 min post-sunset. Lights on 20 min before shoot.</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Start 6–8 ft above roofline. Slow pull — up and back simultaneously. 6 sec minimum. No banking.</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Hailey's VO begins as the drone pulls back. Her name callout appears here. This is the tonal and editorial pivot between both voices. Match cut out: drone's upward movement cuts to a downward look at tile samples.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="shot-card">
+        <div class="shot-header" onclick="toggleShot(this)">
+          <span class="shot-tc">:12</span>
+          <div class="shot-title-wrap"><div class="shot-title">Hailey with client comparing tile or material samples</div></div>
+          <span class="shot-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </div>
+        <div class="shot-detail">
+          <div class="shot-meta-grid">
+            <div><div class="smi-label">Lens</div><div class="smi-val">50mm or 85mm</div></div>
+            <div><div class="smi-label">Light</div><div class="smi-val">Natural window — renders material colors accurately</div></div>
+            <div><div class="smi-label">Move</div><div class="smi-val">Static. Overhead or close three-quarter angle.</div></div>
+            <div class="smi-full"><div class="smi-label">Direction</div><div class="smi-val">Shoot during an actual client selection session — not staged. Hailey's VO closes here. Neither looking at camera. Cut to end card at :13.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB: DIRECTION
+══════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-direction">
+
+  <div class="panel-section">
+    <div class="section-label" style="margin-bottom:4px;">Cinematographic Standards</div>
+    <p class="body-text" style="margin-bottom:16px;"><em>Every shot should be able to stand alone as a still. If it can't, it doesn't belong in the edit.</em></p>
+
+    <div class="dir-block">
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left"><div class="acc-name">Camera &amp; optics</div></div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Cinema camera or full-frame mirrorless (Sony FX3, BMPCC 6K, or equivalent). No phone or consumer-grade capture.</li>
+            <li>Prime lenses strongly preferred — 24mm, 35mm, 50mm, 85mm. Zoom only for telephoto architecture shots.</li>
+            <li>Shoot wide open or near-wide: f/1.8–f/2.8. Subject-to-background separation should read clearly in every shot.</li>
+            <li>Frame rate: 24fps primary; 120fps selectively for slow motion (crane lift, material detail, gesture shot).</li>
+            <li>Shoot in LOG profile (S-Log3, BRAW, or equivalent). Grade in post — never bake-in a look on set.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left"><div class="acc-name">Light</div></div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Natural and available light only. No soft boxes, LED panels, or fill on B-roll. If the scene needs light, change the time of day.</li>
+            <li>Interiors: use window light and practical sources. Expose for the highlights; let shadows open naturally.</li>
+            <li>Exteriors: golden hour, blue hour, or overcast preferred. Avoid midday direct sun on faces and architectural surfaces.</li>
+            <li>Video 03 drone shot: interior lights on 20 minutes before arrival. Blue-hour window is 8–12 minutes post-sunset. Schedule accordingly — there is no second chance for this shot.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left"><div class="acc-name">Camera movement</div></div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Movements should be motivated — they reveal something, not decorate. If the movement doesn't serve the shot, lock the camera down.</li>
+            <li>Acceptable: slow push-ins, arc reveals, deliberate pans, handheld that reads as intention rather than instability.</li>
+            <li>Gimbal: acceptable for walking follow shots (Video 01 bike arrival, Video 02 site walk). Not a substitute for composition.</li>
+            <li>Drone: smooth, unhurried. No aggressive banking. Reveal movements only — the camera finds the building, it doesn't perform around it.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left"><div class="acc-name">Composition</div></div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Portrait format is not a crop of landscape — compose natively for 9:16. Subject placement, negative space, and leading lines must be designed for the vertical frame.</li>
+            <li>Depth is mandatory. Every shot should have foreground, subject, and background — or at minimum two of the three.</li>
+            <li>For people: avoid center-frame symmetry. Off-axis placement, partial framing, and back-of-head shots are all appropriate when they serve the moment.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left"><div class="acc-name">Color &amp; grade</div></div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Warm neutral palette — natural skin tones, architectural materials reading true, slight warmth in shadows.</li>
+            <li>Reference aesthetic: Iwan Baan's architectural photography. Real materials, real light, no digital gloss.</li>
+            <li>Consistent LUT applied across all three videos. Variance between videos should come from location and light, not grade inconsistency.</li>
+            <li>No teal-and-orange looks. No desaturation for "cinematic" effect. Grade to the face first, then the environment.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left"><div class="acc-name">Audio</div></div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <ul>
+            <li>Voice-over recorded in a dry acoustic environment. No room reverb, no compression artifacts.</li>
+            <li>Ambient sound layered under VO — job site presence, wind, interior quiet — whichever is authentic to the scene.</li>
+            <li>No music. No score. No sound effects that didn't exist on location.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-section">
+    <div class="section-label">Transitions</div>
+    <p class="body-text" style="margin-bottom:16px;">The edit should feel authored, not filtered. These are the only transitions used in this series.</p>
+    <div class="dir-block">
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left">
+            <div class="acc-name">Hard cut</div>
+            <div class="acc-sub">Default — used for most edits</div>
+          </div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <p>Instantaneous. One frame ends, the next begins. The contrast between shots does the work. Hold each shot long enough that the edit doesn't feel rushed. Cut on action or on a natural visual pause.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left">
+            <div class="acc-name">Match cut</div>
+            <div class="acc-sub">Connects discipline to result — used deliberately</div>
+          </div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <p>Two shots share a compositional element that bridges the cut. <strong>Video 01:</strong> Graham's drawing diagonal continues as the crane cable angle. <strong>Video 03:</strong> The Sacks ceiling line continues as the horizon in the drone pull-back.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left">
+            <div class="acc-name">Cut on motion</div>
+            <div class="acc-sub">Kinetic continuity across location changes</div>
+          </div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <p>A moving element in the outgoing shot echoes in the incoming shot. <strong>Video 01:</strong> The beam's upward motion cuts to the drone's upward pull in Video 03. <strong>Video 03:</strong> Drone's upward pull cuts to a downward look at the tile samples — direction reversal creates the transition.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left">
+            <div class="acc-name">L-cut / J-cut</div>
+            <div class="acc-sub">Audio bridges the picture edit — Video 03</div>
+          </div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <p>VO from the next or previous shot crosses the picture edit point. Use at the voice handoff in Video 03 — the image can move before Hailey's voice begins. Keeps the pacing from feeling mechanical at the transition.</p>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-btn" onclick="toggleAcc(this)">
+          <div class="acc-left">
+            <div class="acc-name">Slow-motion hold</div>
+            <div class="acc-sub">Once per video maximum — at the key shot only</div>
+          </div>
+          <span class="acc-chevron"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <p>A single shot slows to near-stillness, creating emphasis without a cut. Best candidates: crane beam (V01), the gesture shot (V02), Sacks drone reveal (V03). One use per video — overuse eliminates the effect.</p>
+        </div>
+      </div>
+      <div class="avoid-row">
+        <span class="avoid-label">Avoid</span>
+        <span class="avoid-text">Dissolves, wipes, cross-fades, flash cuts, whip pans, speed ramps used decoratively, or any transition that sounds like a preset. The only fade allowed is the fade-to-black into the end card at :13.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB: PRODUCTION
+══════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-production">
+
+  <div class="panel-section">
+    <div class="section-label">Production Notes</div>
+
+    <div class="prod-card">
+      <div class="prod-card-header">Capture &amp; Format</div>
+      <ul>
+        <li>Shoot natively in 9:16 portrait wherever possible. Architectural exteriors and drone footage: shoot 4K landscape, crop in post — retain landscape masters for future use.</li>
+        <li>Cinema camera or full-frame mirrorless only. LOG profile. Grade in post.</li>
+        <li>24fps primary; 120fps selectively for slow-motion moments (crane, gesture shot, drone reveal).</li>
+      </ul>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-card-header">Voice-Over Recording</div>
+      <ul>
+        <li>All VO off-camera. No on-camera delivery in any video in this series.</li>
+        <li>Record each person in a single session. Multiple takes — select the most conversational pass.</li>
+        <li>Video 03: record Kelsey and Hailey separately in the same session. Edit into one continuous track with a clean half-beat pause between voices.</li>
+        <li>Lock VO before editing begins. Cut picture to VO — never the reverse.</li>
+      </ul>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-card-header">Graphics &amp; Editing</div>
+      <ul>
+        <li>4–6 cuts per video. Minimum 2-second hold per shot.</li>
+        <li>Name callout: white text, lower left, :04–:06. No background box. 0.3s fade in, hold, 0.3s fade out.</li>
+        <li>No other text overlays or motion graphics during the clip body.</li>
+        <li>End card :13–:15: "The People Behind the Work · Longfellow Design Build."</li>
+        <li>Fade to black into end card — the only fade allowed in the edit.</li>
+      </ul>
+    </div>
+
+    <div class="prod-card">
+      <div class="prod-card-header">Deliverables Per Video</div>
+      <ul>
+        <li>Final 9:16 MP4, H.264, YouTube optimized.</li>
+        <li>Muted autoplay version for homepage embed.</li>
+        <li>Static thumbnail from each video's strongest frame — not the opening.</li>
+        <li>Landscape 16:9 master retained for future use.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-brand">Longfellow Design Build</div>
+  <div class="footer-text">The People Behind the Work · Video Series Brief · Confidential</div>
+</footer>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function switchEpisode(id, btn) {
+    document.querySelectorAll('.episode-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.ep-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggleShot(header) {
+    const detail = header.nextElementSibling;
+    const chevron = header.querySelector('.shot-chevron');
+    const open = detail.classList.contains('open');
+    detail.classList.toggle('open', !open);
+    header.classList.toggle('open', !open);
+  }
+
+  function toggleAcc(btn) {
+    const body = btn.nextElementSibling;
+    const open = body.classList.contains('open');
+    body.classList.toggle('open', !open);
+    btn.classList.toggle('open', !open);
+  }
+</script>
+</body>
+</html>
